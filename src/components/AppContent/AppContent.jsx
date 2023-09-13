@@ -1,4 +1,9 @@
-import { DownOutlined, FrownOutlined, SmileOutlined } from "@ant-design/icons";
+import {
+  DownOutlined,
+  FrownOutlined,
+  PlusOutlined,
+  SmileOutlined,
+} from "@ant-design/icons";
 import {
   Button,
   Calendar,
@@ -7,14 +12,25 @@ import {
   Row,
   Space,
   Typography,
-  
   Dropdown,
   List,
   Statistic,
   Progress,
 } from "antd";
-import CountUp from "react-countup";
-import React from "react";
+
+import React, { useState } from "react";
+import PendingTask from "../views/taskPending/PendingTask.jsx";
+import CalenderCard from "../views/calender/AppCalender.jsx";
+import MoodCard from "../views/moodCard/MoodCard.jsx";
+import Announcement from "../views/announcementCard/Announcement.jsx";
+import Attendance from "../views/attendanceCard/Attendance.jsx";
+import Leaves from "../views/leavesCard/Leaves.jsx";
+import QuickLinks from "../views/quickLinkCard/QuickLinks.jsx";
+import Pending from "../views/pendingOnMe/Pending.jsx";
+import PendingReq from "../views/pendingReqs/PendingReq.jsx";
+import Celebration from "../views/celebrationCard/Celebration.jsx";
+import Holiday from "../views/holidayCard/Holiday.jsx";
+import Insights from "../views/insightCard/Insights.jsx";
 
 const data = ["Item 1", "Item 2", "Item 3", "Item 4"];
 
@@ -73,9 +89,18 @@ const items = [
   },
 ];
 
-const formatter = (value) => new Date(Date.now()).toLocaleDateString();
-
 const AppContent = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="AppContent">
       <div className="titleBox">
@@ -83,200 +108,54 @@ const AppContent = () => {
         <Button type="primary">Apply New</Button>
       </div>
       <div className="container">
-        {/* <Row gutter={16}>
-          <Col span={12}>
-            <CalenderCard />
-          </Col>
-          
-          <Space direction="vertical">
-            <Card
-              title="Let's get to work"
-              style={{ width: 800 }}
-              extra={
-                <Dropdown
-                  menu={{
-                    items,
-                  }}
-                >
-                  <a onClick={(e) => e.preventDefault()}>
-                    <Space>
-                      Today's mood
-                      <DownOutlined />
-                    </Space>
-                  </a>
-                </Dropdown>
-              }
-            ></Card>
-            <Card
-              title="Let's get to work"
-              style={{ width: 800 }}
-              extra={
-                <Dropdown
-                  menu={{
-                    items,
-                  }}
-                >
-                  <a onClick={(e) => e.preventDefault()}>
-                    <Space>
-                      Today's mood
-                      <DownOutlined />
-                    </Space>
-                  </a>
-                </Dropdown>
-              }
-            ></Card>
-          </Space>
-        </Row> */}
-        <Space direction="horizontal">
+        <Space size={"large"} direction="horizontal">
           <CalenderCard />
           <Space
             style={{ display: "flex", flexDirection: "column", paddingTop: 0 }}
           >
-            <Card
-              title="Let's get to work"
-              style={{ width: 800 }}
-              bordered={false}
-              extra={
-                <Dropdown
-                  menu={{
-                    items,
-                  }}
-                >
-                  <a onClick={(e) => e.preventDefault()}>
-                    <Space>
-                      Today's mood
-                      <DownOutlined />
-                    </Space>
-                  </a>
-                </Dropdown>
-              }
-            >
-              <Row gutter={16}>
-                <Col span={12}>
-                  <Statistic title="Today" formatter={formatter} />
-                </Col>
-                <Col span={12}>
-                  <h3>09:00:00 hrs</h3>
-                </Col>
-              </Row>
-              <Progress percent={50}/>
-              <Typography.Text type="secondary">
-                Shift 09:00 AM - 06:00 PM
-              </Typography.Text>
-            </Card>
-            <Card title="Announcements" style={{ width: 800 }} bordered={false}>
-              <List
-                size="small"
-                bordered={false}
-                dataSource={data}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-              />
-            </Card>
+            <MoodCard items={items} />
+            <Announcement data={data} />
           </Space>
         </Space>
         {/* ....................... */}
         <Row gutter={16}>
+          <PendingTask
+            showModal={showModal}
+            isModalOpen={isModalOpen}
+            handleOk={handleOk}
+            handleCancel={handleCancel}
+            data={data}
+          />
           <Col span={8}>
-            <Card title="Pending tasks" bordered={false} extra>
-              <List
-                size="small"
-                bordered={false}
-                dataSource={data}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-              />
-            </Card>
+            <Attendance attendanceData={attendanceData} />
           </Col>
           <Col span={8}>
-            <Card title="Attendence" bordered={false}>
-              <List
-                size="small"
-                bordered={false}
-                dataSource={attendanceData}
-                renderItem={(item) => (
-                  <List.Item>
-                    <b>{item.name}</b>: {item.value}
-                  </List.Item>
-                )}
-              />
-            </Card>
-          </Col>
-          <Col span={8}>
-            <Card title="Leaves" bordered={false}>
-              <List
-                size="small"
-                bordered={false}
-                dataSource={data}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-              />
-            </Card>
+            <Leaves data={data} />
           </Col>
         </Row>
-
-        {/* .................. */}
+        {/* ................... */}
         <Row gutter={16}>
           <Col span={8}>
-            <Card title="Quick links" bordered={false}>
-              <List
-                size="small"
-                bordered={false}
-                dataSource={data}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-              />
-            </Card>
+            <QuickLinks data={data} />
           </Col>
           <Col span={8}>
-            <Card title="Pending on me" bordered={false}>
-              <List
-                size="small"
-                bordered={false}
-                dataSource={data}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-              />
-            </Card>
+            <Pending data={data} />
           </Col>
           <Col span={8}>
-            <Card title="My Pending Requests" bordered={false}>
-              <List
-                size="small"
-                bordered={false}
-                dataSource={data}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-              />
-            </Card>
+            <PendingReq data={data} />
           </Col>
         </Row>
 
         {/* .................... */}
         <Row gutter={16}>
           <Col span={8}>
-            <Card title="Celebrations" bordered={false}>
-              <List
-                size="small"
-                bordered={false}
-                dataSource={data}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-              />
-            </Card>
+            <Celebration data={data} />
           </Col>
           <Col span={8}>
-            <Card title="Holiday" bordered={false}>
-              <List
-                size="small"
-                bordered={false}
-                dataSource={data}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-              />
-            </Card>
+            <Holiday data={data} />
           </Col>
           <Col span={8}>
-            <Card title="Insights" bordered={false}>
-              <List
-                size="small"
-                bordered={false}
-                dataSource={data}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-              />
-            </Card>
+            <Insights data={data} />
           </Col>
         </Row>
       </div>
@@ -285,11 +164,3 @@ const AppContent = () => {
 };
 
 export default AppContent;
-
-function CalenderCard() {
-  return (
-    <>
-      <Calendar />
-    </>
-  );
-}
