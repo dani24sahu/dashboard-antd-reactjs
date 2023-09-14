@@ -16,9 +16,11 @@ const { Text } = Typography;
 
 function TaskForm({ onSubmit, isModalOpen, handleOk, handleCancel }) {
   const [formData, setFormData] = useState(null);
+  const [newCategories, setNewCategories] = useState([]); 
   const [form] = Form.useForm();
 
-  const [showModal, setShowModal] = useState(false); // state variable for modal visibility
+  const [showModal, setShowModal] = useState(false);
+  const [showNewCategoryModal, setShowNewCategoryModal] = useState(false);
 
   const handleFormSubmit = (values) => {
     console.log(values);
@@ -26,12 +28,25 @@ function TaskForm({ onSubmit, isModalOpen, handleOk, handleCancel }) {
     onSubmit(values);
   };
 
+  const handleNewCategorySubmit = (values) => {
+    console.log(values);
+    setNewCategories(values);
+    onSubmit(values);
+  }
+
   const handleOpenModal = () => {
     setShowModal(true); // open the modal
   };
 
+  const handleOpenNewCategoryModal = () => {
+    setShowNewCategoryModal(true); // open the modal
+  };
+
   const handleCloseModal = () => {
     setShowModal(false); // close the modal
+  };
+  const handleCloseNewCategoryModal = () => {
+    setShowNewCategoryModal(false); // close the modal
   };
 
   return (
@@ -71,7 +86,7 @@ function TaskForm({ onSubmit, isModalOpen, handleOk, handleCancel }) {
           </Form.Item>
 
           <Form.Item>
-            <PlusOutlined style={{color:'blue'}}/>
+            <PlusOutlined style={{ color: "blue" }} />
             <Text
               type="secondary"
               onClick={handleOpenModal}
@@ -82,13 +97,31 @@ function TaskForm({ onSubmit, isModalOpen, handleOk, handleCancel }) {
             </Text>
           </Form.Item>
           <Modal
-            title="New Category" // modal title
-            open={showModal} // modal visibility
-            onCancel={handleCloseModal} // close modal when clicking cancel button or outside modal
-            width={600} // modal width in pixels
+            title="New Category"
+            open={showModal}
+            onCancel={handleCloseModal}
+            // onSubmit={() => onSubmit(newCategories)}
+            width={600}
+            footer={[
+              <Button key="cancel" onClick={handleCancel}>
+                Cancel
+              </Button>,
+              <Button
+                key="submit"
+                type="primary"
+                htmlType="submit"
+                onClick={() => form.submit()} // TODO: useForm hook
+              >
+                Add New Category
+              </Button>,
+            ]}
           >
-            <Form.List name="newCategories">
-              {(fields, { add, remove }) => (
+            {/* <Form.List  name="newCategories" >
+              {
+            </Form.List> */}
+            <Form form={form} onFinish={handleNewCategorySubmit}>
+              <Form.List name="newCategories">
+                {(fields, { add, remove }) => (
                 <>
                   {fields.map((field) => (
                     <Form.Item key={field.key}>
@@ -123,7 +156,8 @@ function TaskForm({ onSubmit, isModalOpen, handleOk, handleCancel }) {
                   </Form.Item>
                 </>
               )}
-            </Form.List>
+              </Form.List>
+            </Form>
           </Modal>
           <Form.Item name="startEndDate">
             {/* TODO: Date picker with Rangepicker */}

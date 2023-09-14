@@ -8,7 +8,6 @@ import {
   Progress,
   Row,
   Space,
-  Statistic,
   Typography,
   message,
 } from "antd";
@@ -82,26 +81,26 @@ const MoodCard = ({ items }) => {
     setEmojis([]);
   };
 
-  // useEffect(() => {
-  //   if (!selectedMood) {
-  //     const interval = setInterval(() => {
-  //       if (emojis.length < 4) {
-  //         setEmojis((prevEmojis) => [...prevEmojis, "😊"]);
-  //       } else {
-  //         clearInterval(interval);
-  //       }
-  //     }, 1000);
+  useEffect(() => {
+    if (!selectedMood) {
+      const interval = setInterval(() => {
+        if (emojis.length < 4) {
+          setEmojis((prevEmojis) => [...prevEmojis, emojis[emojis.length]]);
+        } else {
+          clearInterval(interval);
+        }
+      }, 1000);
 
-  //     return () => clearInterval(interval);
-  //   }
-  // }, [selectedMood, emojis]);
+      return () => clearInterval(interval);
+    }
+  }, [selectedMood, emojis]);
 
   return (
     <>
       {contextHolder}
       <Card
         title="Let's get to work"
-        style={{ width: "800px",height:"300px", fontSize: "20px" }}
+        style={{ width: "800px", height: "300px", fontSize: "20px" }}
         bordered={false}
         extra={
           <Dropdown
@@ -124,9 +123,9 @@ const MoodCard = ({ items }) => {
               </Menu>
             }
           >
-            <a onClick={(e) => e.preventDefault()}>
+            <a href="/dummyHREF" onClick={(e) => e.preventDefault()}>   {/*{Provided dummy href}*/}
               <Space>
-                {/* {!selectedMood && } */}
+                {/* {!selectedMood && emojis}         ********************TODO */}
                 {selectedMood && selectedMood.icon}
                 <span>
                   {selectedMood ? selectedMood.label : `Today's Mood`}

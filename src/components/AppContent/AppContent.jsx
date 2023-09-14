@@ -1,22 +1,4 @@
-import {
-  DownOutlined,
-  FrownOutlined,
-  PlusOutlined,
-  SmileOutlined,
-} from "@ant-design/icons";
-import {
-  Button,
-  Calendar,
-  Card,
-  Col,
-  Row,
-  Space,
-  Typography,
-  Dropdown,
-  List,
-  Statistic,
-  Progress,
-} from "antd";
+import { Button, Card, Col, Row, Space, Typography } from "antd";
 
 import React, { useState } from "react";
 import PendingTask from "../views/taskPending/PendingTask.jsx";
@@ -125,7 +107,9 @@ const AppContent = () => {
       </div>
       <div className="container">
         <Space size={"large"} direction="horizontal">
-          <CalenderCard />
+          <Card>
+            <CalenderCard />
+          </Card>
           <Space
             style={{ display: "flex", flexDirection: "column", paddingTop: 0 }}
           >
