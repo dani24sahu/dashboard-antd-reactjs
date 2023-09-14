@@ -13,6 +13,8 @@ import {
   message,
 } from "antd";
 
+const { Text } = Typography;
+
 // const formatter = (value) => new Date(Date.now()).toLocaleDateString();
 const formatter = () => {
   const currentDate = new Date();
@@ -99,7 +101,7 @@ const MoodCard = ({ items }) => {
       {contextHolder}
       <Card
         title="Let's get to work"
-        style={{ width: 800 }}
+        style={{ width: "800px",height:"300px", fontSize: "20px" }}
         bordered={false}
         extra={
           <Dropdown
@@ -137,16 +139,22 @@ const MoodCard = ({ items }) => {
       >
         <Row gutter={16}>
           <Col span={12}>
-            <Statistic title="Today" formatter={formatter} />
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <Text strong style={{ fontSize: "20px" }}>
+                Today
+              </Text>
+              <Text>{formatter()}</Text>
+            </div>
           </Col>
           <Col span={12}>
-            <h3>09:00:00 hrs</h3>
+            <Text style={{ fontSize: "20px" }}>09:00:00 hrs</Text>
           </Col>
         </Row>
         <Progress
           percent={progress}
           strokeColor="lightgreen"
           showInfo={false}
+          style={{ marginTop: "80px " }}
         />
 
         <Typography.Text
@@ -155,6 +163,7 @@ const MoodCard = ({ items }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            marginTop: "100px",
           }}
         >
           Shift 09:00 AM - 06:00 PM
