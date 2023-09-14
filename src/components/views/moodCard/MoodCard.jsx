@@ -1,30 +1,39 @@
-
 import React, { useEffect, useState } from "react";
 import { DownOutlined } from "@ant-design/icons";
 import {
   Card,
   Col,
   Dropdown,
-  Menu, // Import Menu component from antd
+  Menu,
   Progress,
   Row,
   Space,
   Statistic,
   Typography,
-  message
+  message,
 } from "antd";
 
-const formatter = (value) => new Date(Date.now()).toLocaleDateString();
+// const formatter = (value) => new Date(Date.now()).toLocaleDateString();
+const formatter = () => {
+  const currentDate = new Date();
+  const options = {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  };
+  return currentDate.toLocaleDateString(undefined, options).replace(/,/g, "");
+};
 
 const MoodCard = ({ items }) => {
   const [progress, setProgress] = useState(0);
   const [selectedMood, setSelectedMood] = useState(null);
   const [emojis, setEmojis] = useState([]);
-  const [messageApi, contextHolder] = message.useMessage()
+  const [messageApi, contextHolder] = message.useMessage();
 
-  const success = ({label}) => {
+  const success = ({ label }) => {
     messageApi.open({
-      type: 'success',
+      type: "success",
       content: `You are ${label} today!`,
     });
   };
@@ -99,7 +108,10 @@ const MoodCard = ({ items }) => {
                 {items.map((item) => (
                   <Menu.Item
                     key={item.key}
-                    onClick={() =>{ handleMoodSelect(item); success(item)}}
+                    onClick={() => {
+                      handleMoodSelect(item);
+                      success(item);
+                    }}
                   >
                     <Space>
                       {item.icon}
@@ -114,7 +126,9 @@ const MoodCard = ({ items }) => {
               <Space>
                 {/* {!selectedMood && } */}
                 {selectedMood && selectedMood.icon}
-                <span>{selectedMood ? selectedMood.label: `Today's Mood`}</span>
+                <span>
+                  {selectedMood ? selectedMood.label : `Today's Mood`}
+                </span>
                 <DownOutlined />
               </Space>
             </a>
@@ -129,9 +143,20 @@ const MoodCard = ({ items }) => {
             <h3>09:00:00 hrs</h3>
           </Col>
         </Row>
-        <Progress percent={progress} strokeColor="lightgreen" showInfo={false} />
+        <Progress
+          percent={progress}
+          strokeColor="lightgreen"
+          showInfo={false}
+        />
 
-        <Typography.Text type="secondary" style={{display:"flex", alignItems:'center', justifyContent:'center'}}>
+        <Typography.Text
+          type="secondary"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           Shift 09:00 AM - 06:00 PM
         </Typography.Text>
       </Card>
