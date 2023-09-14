@@ -18,8 +18,6 @@ import {
   Progress,
 } from "antd";
 
-
-
 import React, { useState } from "react";
 import PendingTask from "../views/taskPending/PendingTask.jsx";
 import CalenderCard from "../views/calender/AppCalender.jsx";
@@ -33,6 +31,12 @@ import PendingReq from "../views/pendingReqs/PendingReq.jsx";
 import Celebration from "../views/celebrationCard/Celebration.jsx";
 import Holiday from "../views/holidayCard/Holiday.jsx";
 import Insights from "../views/insightCard/Insights.jsx";
+
+import { ReactComponent as CalmIcon } from "../../assets/emoji/calm.svg";
+import { ReactComponent as DullIcon } from "../../assets/emoji/dull.svg";
+import { ReactComponent as EcstaticIcon } from "../../assets/emoji/ecstatic.svg";
+import { ReactComponent as SadIcon } from "../../assets/emoji/sad.svg";
+import { ReactComponent as SleepIcon } from "../../assets/emoji/Sleepy.svg";
 
 const data = ["Item 1", "Item 2", "Item 3", "Item 4"];
 const { Text } = Typography;
@@ -68,27 +72,27 @@ const items = [
   {
     key: "1",
     label: "Happy",
-    icon: <SmileOutlined />,
+    icon: <EcstaticIcon />,
   },
   {
     key: "2",
     label: "Calm",
-    icon: <SmileOutlined />,
+    icon: <CalmIcon />,
   },
   {
     key: "3",
     label: "Sleepy",
-    icon: <SmileOutlined />,
+    icon: <SleepIcon />,
   },
   {
     key: "4",
     label: "Dull",
-    icon: <SmileOutlined />,
+    icon: <DullIcon />,
   },
   {
     key: "5",
     label: "Sad",
-    icon: <FrownOutlined />,
+    icon: <SadIcon />,
   },
 ];
 
@@ -108,8 +112,16 @@ const AppContent = () => {
     <div className="AppContent">
       <div className="titleBox">
         {/* <Typography.Title style={{color:'maroon'}}>My Dashboard</Typography.Title> */}
-        <Text style={{color:'maroon', fontSize:25}} strong>My Dashboard</Text>
-        <Button type="primary" style={{color:'white', backgroundColor:'maroon'}} size="large">Apply New</Button>
+        <Text style={{ color: "maroon", fontSize: 25 }} strong>
+          My Dashboard
+        </Text>
+        <Button
+          type="primary"
+          style={{ color: "white", backgroundColor: "maroon" }}
+          size="large"
+        >
+          Apply New
+        </Button>
       </div>
       <div className="container">
         <Space size={"large"} direction="horizontal">
