@@ -154,7 +154,7 @@ const MoodCard = ({ items }) => {
           percent={progress}
           strokeColor="lightgreen"
           showInfo={false}
-          style={{ marginTop: "80px " }}
+          style={{ marginTop: "80px ", display: "flex", alignItems: "center" }}
         />
 
         <Typography.Text
@@ -163,7 +163,7 @@ const MoodCard = ({ items }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            marginTop: "100px",
+            marginTop: "10px",
           }}
         >
           Shift 09:00 AM - 06:00 PM
