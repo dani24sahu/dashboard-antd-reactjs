@@ -85,7 +85,7 @@ const MoodCard = ({ items }) => {
             <h3>09:00:00 hrs</h3>
           </Col>
         </Row>
-        <Progress percent={progress} showInfo={false} />
+        <Progress percent={progress} strokeColor='lightgreen' showInfo={false} />
         <Typography.Text type="secondary">
           Shift 09:00 AM - 06:00 PM
         </Typography.Text>
