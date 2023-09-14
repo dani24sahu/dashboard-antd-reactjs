@@ -19,9 +19,11 @@
   justify-content: space-between;
   align-items: center;
   /* min-width: 100vw; */
-  padding-left: 30px;
+  /* padding-left: 30px;
   padding-right: 30px;
+  padding-top: 20px; */
   /* margin: 2px; */
+  margin: 30px 20px 30px 20px;
 }
 
 .container {

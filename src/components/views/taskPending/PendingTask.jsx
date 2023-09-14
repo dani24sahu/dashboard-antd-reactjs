@@ -67,9 +67,9 @@ const PendingTask = ({
         >
           {taskData && (
             <Table
-              showHeader={true}
+              showHeader={false}
               columns={columns}
-              scroll={{x:550,y: 300}}
+              // scroll={{x:550,y: 300}}
               dataSource={dataSource}
               pagination={false} // Optional: Remove pagination if not needed
               rowKey={(record) => record.key} // Specify a unique key for each row
