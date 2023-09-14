@@ -18,6 +18,8 @@ import {
   Progress,
 } from "antd";
 
+
+
 import React, { useState } from "react";
 import PendingTask from "../views/taskPending/PendingTask.jsx";
 import CalenderCard from "../views/calender/AppCalender.jsx";
@@ -33,6 +35,7 @@ import Holiday from "../views/holidayCard/Holiday.jsx";
 import Insights from "../views/insightCard/Insights.jsx";
 
 const data = ["Item 1", "Item 2", "Item 3", "Item 4"];
+const { Text } = Typography;
 
 const attendanceData = [
   {
@@ -104,8 +107,9 @@ const AppContent = () => {
   return (
     <div className="AppContent">
       <div className="titleBox">
-        <Typography.Title>My Dashboard</Typography.Title>
-        <Button type="primary">Apply New</Button>
+        {/* <Typography.Title style={{color:'maroon'}}>My Dashboard</Typography.Title> */}
+        <Text style={{color:'maroon', fontSize:25}} strong>My Dashboard</Text>
+        <Button type="primary" style={{color:'white', backgroundColor:'maroon'}} size="large">Apply New</Button>
       </div>
       <div className="container">
         <Space size={"large"} direction="horizontal">
