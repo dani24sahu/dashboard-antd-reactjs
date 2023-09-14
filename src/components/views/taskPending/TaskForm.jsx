@@ -23,7 +23,7 @@ function TaskForm({ onSubmit, isModalOpen, handleOk, handleCancel }) {
   const handleFormSubmit = (values) => {
     console.log(values);
     setFormData(values);
-    onSubmit(values)
+    onSubmit(values);
   };
 
   const handleOpenModal = () => {
@@ -71,11 +71,11 @@ function TaskForm({ onSubmit, isModalOpen, handleOk, handleCancel }) {
           </Form.Item>
 
           <Form.Item>
-            <PlusOutlined />
+            <PlusOutlined style={{color:'blue'}}/>
             <Text
               type="secondary"
               onClick={handleOpenModal}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", color: "blue" }}
             >
               {" "}
               New Category
@@ -133,10 +133,13 @@ function TaskForm({ onSubmit, isModalOpen, handleOk, handleCancel }) {
               format="DD/MM/YYYY"
             />
           </Form.Item>
-          <Form.Item name='startEndTime'>
-            <TimePicker.RangePicker name='startEndTime' placeholder={["12:00 PM", "12:00 PM"]} />
+          <Form.Item name="startEndTime">
+            <TimePicker.RangePicker
+              name="startEndTime"
+              placeholder={["12:00 PM", "12:00 PM"]}
+            />
           </Form.Item>
-          <Form.Item name='remarks'>
+          <Form.Item name="remarks">
             <Input.TextArea name="remarks" placeholder="Remarks" />
           </Form.Item>
         </Form>
