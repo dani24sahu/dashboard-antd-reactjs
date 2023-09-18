@@ -1,18 +1,45 @@
-import React from "react";
-import { Card, List, Badge } from "antd";
-import { GiftFilled, TrophyFilled, UserOutlined } from "@ant-design/icons";
+import React, { useState } from "react";
+import { Card, List, Badge, Select } from "antd";
+import { GiftFilled, TrophyFilled } from "@ant-design/icons";
 
 import { data } from "./celebrationData";
 
+const { Option } = Select;
+
 const Celebration = () => {
+  const [filter, setFilter] = useState("All Celebrations");
+
+  const filteredData =
+    filter === "All Celebrations"
+      ? data
+      : data.filter((item) => item.occasion === filter);
+
+  const handleFilterChange = (value) => {
+    setFilter(value);
+  };
+
   return (
     <div style={{ display: "block", padding: 30 }}>
-      <Card title="Celebrations">
+      <Card
+        title="Celebrations"
+        extra={
+          <Select
+            defaultValue="All Celebrations"
+            onChange={handleFilterChange}
+          >
+            <Option value="All Celebrations">All Celebrations</Option>
+            <Option value="Birthday">Birthday</Option>
+            <Option value="Work Anniversary">Work Anniversary</Option>
+          </Select>
+        }
+      >
         <List
           itemLayout="horizontal"
-          dataSource={data}
+          bordered
+          dataSource={filteredData}
+          // style={{backgroundColor:"#e6f2ff"}}
           renderItem={(item) => (
-            <List.Item>
+            <List.Item style={{padding:"2px"}}>
               <List.Item.Meta
                 avatar={<img src={item.image} alt={item.name} width={64} />}
                 title={item.name}
@@ -30,7 +57,7 @@ const Celebration = () => {
               <Badge
                 count={item.date}
                 style={{
-                  backgroundColor: "lightblue",
+                  backgroundColor: "#e6f2ff",
                   color: "black",
                   fontSize: 12,
                   width: 50,
@@ -47,4 +74,5 @@ const Celebration = () => {
     </div>
   );
 };
+
 export default Celebration;
