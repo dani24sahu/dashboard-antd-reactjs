@@ -1,5 +1,5 @@
 import { Avatar, Image, Menu, Space } from "antd";
-import { BellFilled, BellOutlined, TableOutlined } from "@ant-design/icons";
+import { BellOutlined, TableOutlined } from "@ant-design/icons";
 import React from "react";
 
 const AppHeader = () => {
@@ -21,7 +21,7 @@ const AppHeader = () => {
       <Space direction="horizontal">
         <BellOutlined style={{ fontSize: 24 }} />
         <TableOutlined style={{ fontSize: 24 }} />
-        <Avatar style={{ fontSize: 24 }}></Avatar>
+        <Avatar src="https://source.unsplash.com/random" style={{ fontSize: 24 }}></Avatar>
       </Space>
     </div>
   );
