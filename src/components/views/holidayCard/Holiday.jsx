@@ -1,15 +1,35 @@
-import { Card, List } from "antd";
 import React from "react";
+import { Card, List, Badge } from "antd";
+import { data } from "./holidayData";
 
-const Holiday = ({ data }) => {
+const Holiday = () => {
   return (
     <>
-      <Card title="Holiday" bordered={false}>
+      <Card title="Holidays">
         <List
-          size="small"
-          bordered={false}
+          itemLayout="horizontal"
           dataSource={data}
-          renderItem={(item) => <List.Item>{item}</List.Item>}
+          renderItem={(item) => (
+            <List.Item>
+              <Badge
+                count={item.date}
+                style={{
+                  backgroundColor: "#ffccff",
+                  fontSize: 16,
+                  width: 64,
+                  height: 64,
+                  lineHeight: "64px",
+                  textAlign: "center",
+                  verticalAlign: "middle",
+                }}
+              />
+              <List.Item.Meta
+                title={item.occasion}
+                style={{ marginLeft: 16 }}
+              />
+              <List.Item.Meta title={item.type} />
+            </List.Item>
+          )}
         />
       </Card>
     </>

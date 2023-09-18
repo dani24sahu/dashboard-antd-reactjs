@@ -153,7 +153,7 @@ const AppContent = () => {
               <Celebration />
             </Col>
             <Col span={8}>
-              <Holiday data={data} />
+              <Holiday />
             </Col>
             <Col span={8}>
               <Insights data={data} />
