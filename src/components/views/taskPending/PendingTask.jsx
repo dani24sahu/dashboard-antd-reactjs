@@ -3,7 +3,6 @@ import { Card, Col, Drawer, Image, Space, Table, Typography } from "antd";
 import React, { useState } from "react";
 import TaskForm from "./TaskForm";
 import TaskDrawer from "./TaskDrawer";
-import "./no-pending-tasks.svg";
 
 const PendingTask = ({ showModal, isModalOpen, handleOk, handleCancel }) => {
   const [taskData, setTaskData] = useState([]);
