@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row, Space, Typography } from "antd";
+import { Card, Col, Row, Space, Typography } from "antd";
 
 import React, { useState } from "react";
 import PendingTask from "../views/taskPending/PendingTask.jsx";
@@ -19,6 +19,7 @@ import { ReactComponent as DullIcon } from "../../assets/emoji/dull.svg";
 import { ReactComponent as EcstaticIcon } from "../../assets/emoji/ecstatic.svg";
 import { ReactComponent as SadIcon } from "../../assets/emoji/sad.svg";
 import { ReactComponent as SleepIcon } from "../../assets/emoji/Sleepy.svg";
+import AntButton from "../views/otherComponents/AntButton.jsx";
 
 const data = ["Item 1", "Item 2", "Item 3", "Item 4"];
 const { Text } = Typography;
@@ -78,6 +79,27 @@ const items = [
   },
 ];
 
+const buttonConfig = [
+  {
+    id: 1,
+    label: "Apply New",
+    type: "primary",
+    style: { color: "white", backgroundColor: "maroon" }, // Custom style
+  },
+  {
+    id: 2,
+    label: "Submit",
+    type: "primary",
+    style: { color: "white", backgroundColor: "blue" }, // Custom style
+  },
+  {
+    id: 3,
+    label: "Cancel",
+    type: "primary",
+    style: { color: "black", backgroundColor: "white" }, // Custom style
+  }
+];
+
 const AppContent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
@@ -91,75 +113,74 @@ const AppContent = () => {
   };
 
   return (
-    <div className="AppContent">
-      <div className="titleBox">
-        {/* <Typography.Title style={{color:'maroon'}}>My Dashboard</Typography.Title> */}
-        <Text style={{ color: "maroon", fontSize: 25 }} strong>
-          My Dashboard
-        </Text>
-        <Button
-          type="primary"
-          style={{ color: "white", backgroundColor: "maroon" }}
-          size="large"
-        >
-          Apply New
-        </Button>
-      </div>
-      <div className="container">
-        <Space size={"large"} direction="horizontal">
-          <Card>
-            <CalenderCard />
-          </Card>
-          <Space
-            style={{ display: "flex", flexDirection: "column", paddingTop: 0 }}
-          >
-            <MoodCard items={items} />
-            <Announcement data={data} />
+    <>
+      <div className="AppContent">
+        <div className="titleBox">
+          <Text style={{ color: "maroon", fontSize: 25 }} strong>
+            My Dashboard
+          </Text>
+          <AntButton config={buttonConfig} buttonId={1} />
+        </div>
+        <div className="container">
+          <Space size={"large"} direction="horizontal">
+            <Card>
+              <CalenderCard />
+            </Card>
+            <Space
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                paddingTop: 0,
+              }}
+            >
+              <MoodCard items={items} />
+              <Announcement data={data} />
+            </Space>
           </Space>
-        </Space>
-        {/* ....................... */}
-        <Row gutter={16}>
-          <PendingTask
-            showModal={showModal}
-            isModalOpen={isModalOpen}
-            handleOk={handleOk}
-            handleCancel={handleCancel}
-            data={data}
-          />
-          <Col span={8}>
-            <Attendance attendanceData={attendanceData} />
-          </Col>
-          <Col span={8}>
-            <Leaves data={data} />
-          </Col>
-        </Row>
-        {/* ................... */}
-        <Row gutter={16}>
-          <Col span={8}>
-            <QuickLinks data={data} />
-          </Col>
-          <Col span={8}>
-            <Pending data={data} />
-          </Col>
-          <Col span={8}>
-            <PendingReq data={data} />
-          </Col>
-        </Row>
+          {/* ....................... */}
+          <Row gutter={16}>
+            <PendingTask
+              showModal={showModal}
+              isModalOpen={isModalOpen}
+              handleOk={handleOk}
+              handleCancel={handleCancel}
+              data={data}
+            />
+            <Col span={8}>
+              <Attendance attendanceData={attendanceData} />
+            </Col>
+            <Col span={8}>
+              <Leaves data={data} />
+            </Col>
+          </Row>
+          {/* ................... */}
+          <Row gutter={16}>
+            <Col span={8}>
+              <QuickLinks data={data} />
+            </Col>
+            <Col span={8}>
+              <Pending data={data} />
+            </Col>
+            <Col span={8}>
+              <PendingReq data={data} />
+            </Col>
+          </Row>
 
-        {/* .................... */}
-        <Row gutter={16}>
-          <Col span={8}>
-            <Celebration data={data} />
-          </Col>
-          <Col span={8}>
-            <Holiday data={data} />
-          </Col>
-          <Col span={8}>
-            <Insights data={data} />
-          </Col>
-        </Row>
+          {/* .................... */}
+          <Row gutter={16}>
+            <Col span={8}>
+              <Celebration data={data} />
+            </Col>
+            <Col span={8}>
+              <Holiday data={data} />
+            </Col>
+            <Col span={8}>
+              <Insights data={data} />
+            </Col>
+          </Row>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
