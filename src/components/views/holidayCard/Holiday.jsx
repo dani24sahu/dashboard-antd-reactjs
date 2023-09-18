@@ -15,17 +15,17 @@ const Holiday = () => {
                 count={item.date}
                 style={{
                   backgroundColor: "#ffccff",
-                  fontSize: 16,
-                  width: 64,
-                  height: 64,
-                  lineHeight: "64px",
+                  fontSize: 14,
+                  width: 50,
+                  height: 50,
+                  lineHeight: "50px",
                   textAlign: "center",
                   verticalAlign: "middle",
                 }}
               />
               <List.Item.Meta
                 title={item.occasion}
-                style={{ marginLeft: 16 }}
+                style={{ marginLeft: 20 }}
               />
               <List.Item.Meta title={item.type} />
             </List.Item>
