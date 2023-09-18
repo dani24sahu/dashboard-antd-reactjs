@@ -2,7 +2,6 @@ import { PlusOutlined } from "@ant-design/icons";
 import {
   Form,
   Modal,
-  Button,
   Input,
   ColorPicker,
   Select,
@@ -11,12 +10,16 @@ import {
   TimePicker,
 } from "antd";
 import { useState } from "react";
+import AntButton from "../otherComponents/AntButton";
+import { buttonConfig } from "./taskFormBtnConfig";
 
 const { Text } = Typography;
 
+
+
 function TaskForm({ onSubmit, isModalOpen, handleOk, handleCancel }) {
   const [formData, setFormData] = useState(null);
-  const [newCategories, setNewCategories] = useState([]); 
+  const [newCategories, setNewCategories] = useState([]); // to handle new categories
   const [form] = Form.useForm();
 
   const [showModal, setShowModal] = useState(false);
@@ -32,21 +35,21 @@ function TaskForm({ onSubmit, isModalOpen, handleOk, handleCancel }) {
     console.log(values);
     setNewCategories(values);
     onSubmit(values);
-  }
+  };
 
   const handleOpenModal = () => {
-    setShowModal(true); // open the modal
+    setShowModal(true);
   };
 
   const handleOpenNewCategoryModal = () => {
-    setShowNewCategoryModal(true); // open the modal
+    setShowNewCategoryModal(true);
   };
 
   const handleCloseModal = () => {
-    setShowModal(false); // close the modal
+    setShowModal(false);
   };
   const handleCloseNewCategoryModal = () => {
-    setShowNewCategoryModal(false); // close the modal
+    setShowNewCategoryModal(false);
   };
 
   return (
@@ -58,17 +61,17 @@ function TaskForm({ onSubmit, isModalOpen, handleOk, handleCancel }) {
         onSubmit={() => onSubmit(formData)}
         onCancel={handleCancel}
         footer={[
-          <Button key="cancel" onClick={handleCancel}>
-            Cancel
-          </Button>,
-          <Button
+          <AntButton
+            onClick={handleCancel}
+            config={buttonConfig}
+            buttonId={3}
+          />,
+          <AntButton
+            onClick={() => form.submit()}
             key="submit"
-            type="primary"
-            htmlType="submit"
-            onClick={() => form.submit()} // TODO: useForm hook
-          >
-            Submit
-          </Button>,
+            config={buttonConfig}
+            buttonId={2}
+          />,
         ]}
       >
         <Form form={form} onFinish={handleFormSubmit}>
@@ -89,7 +92,7 @@ function TaskForm({ onSubmit, isModalOpen, handleOk, handleCancel }) {
             <PlusOutlined style={{ color: "blue" }} />
             <Text
               type="secondary"
-              onClick={handleOpenModal}
+              onClick={handleOpenNewCategoryModal}
               style={{ cursor: "pointer", color: "blue" }}
             >
               {" "}
@@ -98,64 +101,71 @@ function TaskForm({ onSubmit, isModalOpen, handleOk, handleCancel }) {
           </Form.Item>
           <Modal
             title="New Category"
-            open={showModal}
-            onCancel={handleCloseModal}
-            // onSubmit={() => onSubmit(newCategories)}
+            open={showNewCategoryModal}
+            onCancel={handleCloseNewCategoryModal}
             width={600}
             footer={[
-              <Button key="cancel" onClick={handleCancel}>
-                Cancel
-              </Button>,
-              <Button
-                key="submit"
-                type="primary"
-                htmlType="submit"
-                onClick={() => form.submit()} // TODO: useForm hook
-              >
-                Add New Category
-              </Button>,
+              <AntButton
+                key="cancel"
+                onClick={handleCloseNewCategoryModal}
+                config={buttonConfig}
+                buttonId={3}
+              />,
+              <AntButton key="newSubmit" config={buttonConfig} buttonId={4} />,
             ]}
           >
-            {/* <Form.List  name="newCategories" >
-              {
-            </Form.List> */}
-            <Form form={form} onFinish={handleNewCategorySubmit}>
+            <Form
+              form={form}
+              onFinish={handleNewCategorySubmit}
+              // onSubmit={() => onSubmit(newCategories)}
+            >
               <Form.List name="newCategories">
                 {(fields, { add, remove }) => (
-                <>
-                  {fields.map((field) => (
-                    <Form.Item key={field.key}>
-                      <Form.Item
-                        {...field}
-                        name={[field.name, "name"]}
-                        key={[field.key, "name"]}
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please enter a category name",
-                          },
-                        ]}
-                      >
-                        <Input placeholder="New category name" />
+                  <>
+                    {fields.map((field) => (
+                      <Form.Item key={field.key}>
+                        <Form.Item
+                          {...field}
+                          name={[field.name, "name"]}
+                          key={[field.key, "name"]}
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please enter a category name",
+                            },
+                          ]}
+                        >
+                          <Input placeholder="New category name" />
+                        </Form.Item>
+                        <Form.Item
+                          {...field}
+                          name={[field.name, "color"]}
+                          key={[field.key, "color"]}
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please select a color",
+                            },
+                          ]}
+                        >
+                          <ColorPicker picker="CirclePicker" />
+                        </Form.Item>
+                        <AntButton
+                          config={buttonConfig}
+                          buttonId={5}
+                          onClick={() => remove(field.name)}
+                        />
                       </Form.Item>
-                      <Form.Item
-                        {...field}
-                        name={[field.name, "color"]}
-                        key={[field.key, "color"]}
-                        rules={[
-                          { required: true, message: "Please select a color" },
-                        ]}
-                      >
-                        <ColorPicker picker="CirclePicker" />
-                      </Form.Item>
-                      <Button onClick={() => remove(field.name)}>Delete</Button>
+                    ))}
+                    <Form.Item>
+                      <AntButton
+                        config={buttonConfig}
+                        buttonId={6}
+                        onClick={() => add()}
+                      />
                     </Form.Item>
-                  ))}
-                  <Form.Item>
-                    <Button onClick={() => add()}>New Category</Button>
-                  </Form.Item>
-                </>
-              )}
+                  </>
+                )}
               </Form.List>
             </Form>
           </Modal>
