@@ -97,7 +97,7 @@ const buttonConfig = [
     label: "Cancel",
     type: "primary",
     style: { color: "black", backgroundColor: "white" }, // Custom style
-  }
+  },
 ];
 
 const AppContent = () => {
@@ -169,7 +169,7 @@ const AppContent = () => {
           {/* .................... */}
           <Row gutter={16}>
             <Col span={8}>
-              <Celebration data={data} />
+              <Celebration />
             </Col>
             <Col span={8}>
               <Holiday data={data} />
