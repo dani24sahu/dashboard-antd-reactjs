@@ -1,0 +1,26 @@
+.custom-date-cell {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #d9d9d9;
+  }
+  
+  .weekend {
+    background-color: lightgray;
+  }
+  
+  .past-date {
+    background-color: lightgreen;
+  }
+  
+  .current-date {
+    background-color: green;
+  }
+  
+  .custom-month-cell {
+    text-align: center;
+    font-weight: bold;
+    padding: 8px;
+    background-color: #f0f0f0;
+    border: 1px solid #d9d9d9;
+  }
+  
