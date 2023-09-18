@@ -21,6 +21,8 @@ import { ReactComponent as SadIcon } from "../../assets/emoji/sad.svg";
 import { ReactComponent as SleepIcon } from "../../assets/emoji/Sleepy.svg";
 import AntButton from "../views/otherComponents/AntButton.jsx";
 
+import { buttonConfig } from "./appContentBtnConfig.js";
+
 const data = ["Item 1", "Item 2", "Item 3", "Item 4"];
 const { Text } = Typography;
 
@@ -76,27 +78,6 @@ const items = [
     key: "5",
     label: "Sad",
     icon: <SadIcon />,
-  },
-];
-
-const buttonConfig = [
-  {
-    id: 1,
-    label: "Apply New",
-    type: "primary",
-    style: { color: "white", backgroundColor: "maroon" }, // Custom style
-  },
-  {
-    id: 2,
-    label: "Submit",
-    type: "primary",
-    style: { color: "white", backgroundColor: "blue" }, // Custom style
-  },
-  {
-    id: 3,
-    label: "Cancel",
-    type: "primary",
-    style: { color: "black", backgroundColor: "white" }, // Custom style
   },
 ];
 
