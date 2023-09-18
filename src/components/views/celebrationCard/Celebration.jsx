@@ -37,7 +37,7 @@ const Celebration = () => {
           renderItem={(item) => (
             <List.Item style={{ padding: "2px" }}>
               <List.Item.Meta
-                avatar={<img src={item.image} alt={item.name} width={64} />}
+                avatar={<img src={item.image} alt={item.name} width={50} height={50} />}
                 title={item.name}
                 description={
                   <>
