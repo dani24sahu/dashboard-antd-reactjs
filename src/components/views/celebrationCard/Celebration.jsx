@@ -19,14 +19,11 @@ const Celebration = () => {
   };
 
   return (
-    <div style={{ display: "block", padding: 30 }}>
+    <>
       <Card
         title="Celebrations"
         extra={
-          <Select
-            defaultValue="All Celebrations"
-            onChange={handleFilterChange}
-          >
+          <Select defaultValue="All Celebrations" onChange={handleFilterChange}>
             <Option value="All Celebrations">All Celebrations</Option>
             <Option value="Birthday">Birthday</Option>
             <Option value="Work Anniversary">Work Anniversary</Option>
@@ -35,11 +32,10 @@ const Celebration = () => {
       >
         <List
           itemLayout="horizontal"
-          bordered
           dataSource={filteredData}
           // style={{backgroundColor:"#e6f2ff"}}
           renderItem={(item) => (
-            <List.Item style={{padding:"2px"}}>
+            <List.Item style={{ padding: "2px" }}>
               <List.Item.Meta
                 avatar={<img src={item.image} alt={item.name} width={64} />}
                 title={item.name}
@@ -71,7 +67,7 @@ const Celebration = () => {
           )}
         />
       </Card>
-    </div>
+    </>
   );
 };
 
