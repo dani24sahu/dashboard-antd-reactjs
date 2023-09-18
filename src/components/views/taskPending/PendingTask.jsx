@@ -1,8 +1,9 @@
 import { FullscreenOutlined, PlusOutlined } from "@ant-design/icons";
-import { Card, Col, Drawer, Space, Table } from "antd";
+import { Card, Col, Drawer, Image, Space, Table, Typography } from "antd";
 import React, { useState } from "react";
 import TaskForm from "./TaskForm";
 import TaskDrawer from "./TaskDrawer";
+import "./no-pending-tasks.svg";
 
 const PendingTask = ({ showModal, isModalOpen, handleOk, handleCancel }) => {
   const [taskData, setTaskData] = useState([]);
@@ -93,7 +94,7 @@ const PendingTask = ({ showModal, isModalOpen, handleOk, handleCancel }) => {
             </>
           }
         >
-          {taskData.length > 0 && (
+          {taskData.length > 0 ? (
             <Table
               showHeader={true}
               columns={columns}
@@ -101,6 +102,13 @@ const PendingTask = ({ showModal, isModalOpen, handleOk, handleCancel }) => {
               pagination={false}
               rowKey={(record) => record.key}
             />
+          ) : (
+            <Typography.Title
+              level={5}
+              style={{ textAlign: "center", color: "gray" }}
+            >
+              No pending tasks
+            </Typography.Title>
           )}
         </Card>
       </Col>
