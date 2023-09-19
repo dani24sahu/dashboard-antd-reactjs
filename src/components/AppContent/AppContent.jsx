@@ -22,6 +22,7 @@ import { ReactComponent as SleepIcon } from "../../assets/emoji/Sleepy.svg";
 import AntButton from "../views/otherComponents/AntButton.jsx";
 
 import { buttonConfig } from "./appContentBtnConfig.js";
+import Button from "../stories/Button/Button.js";
 
 const data = ["Item 1", "Item 2", "Item 3", "Item 4"];
 const { Text } = Typography;
@@ -100,7 +101,8 @@ const AppContent = () => {
           <Text style={{ color: "maroon", fontSize: 25 }} strong>
             My Dashboard
           </Text>
-          <AntButton config={buttonConfig} buttonId={1} />
+          {/* <AntButton config={buttonConfig} buttonId={1} /> */}
+          <Button type='primary' shape='round' color='maroon' label='Apply New' onClick={()=>alert('clicked')} />
         </div>
         <div className="container">
           <Space size={"large"} direction="horizontal">
