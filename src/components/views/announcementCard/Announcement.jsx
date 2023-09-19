@@ -64,6 +64,7 @@ const Announcement = () => {
         <List
           itemLayout="horizontal"
           dataSource={data}
+          style={{ height: 300, overflow: "auto" }}
           renderItem={(item) => (
             <List.Item >
               <List.Item.Meta
