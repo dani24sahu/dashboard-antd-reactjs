@@ -54,10 +54,11 @@ const Leaves = () => {
   const extraContent = <FullscreenOutlined onClick={handleOpenDrawer} />;
 
   const drawerContent = (
-    <div>
+    <div style={{display:'flex', justifyContent:'space-between'}}>
       <Table
         columns={drawerColumns}
         dataSource={data}
+        style={{overflow:'auto', flex:1, marginRight:100}}
         pagination={false}
         onRow={(record) => ({
           onClick: () => handleSelectRow(record),
@@ -67,6 +68,7 @@ const Leaves = () => {
         <aside>
           <h3>{selectedRow.type}</h3>
           <Table
+          style={{overflow:'auto', height: 300}}
             columns={[
               { dataIndex: "key", key: "key" },
               { dataIndex: "value", key: "value", align: "right" },
