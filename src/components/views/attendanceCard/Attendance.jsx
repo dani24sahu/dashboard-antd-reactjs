@@ -1,22 +1,32 @@
-import { Card, List } from "antd";
 import React from "react";
+import { Card, Table } from "antd";
+import { data } from "./attendanceData";
 
-const Attendance = ({attendanceData}) => {
+const columns = [
+  {
+    title: "Type",
+    dataIndex: "type",
+    key: "type",
+  },
+  {
+    title: "Count",
+    dataIndex: "count",
+    key: "count",
+  },
+];
+
+const Attendance = () => {
   return (
-    <>
-      <Card title="Attendence" bordered={false}>
-        <List
-          size="small"
-          bordered={false}
-          dataSource={attendanceData}
-          renderItem={(item) => (
-            <List.Item>
-              <b>{item.name}</b>: {item.value}
-            </List.Item>
-          )}
-        />
-      </Card>
-    </>
+    <Card title="Attendance" style={{ width: 500 }}>
+      <Table
+        columns={columns}
+        style={{ overflow: "auto", height: 300 }}
+        dataSource={data}
+        pagination={false}
+        showHeader={false}
+        // scroll={{ y: 200 }}
+      />
+    </Card>
   );
 };
 

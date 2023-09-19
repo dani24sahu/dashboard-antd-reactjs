@@ -9,6 +9,7 @@ const Holiday = () => {
         <List
           itemLayout="horizontal"
           dataSource={data}
+          style={{ overflow: "auto", height: 300 }}
           renderItem={(item) => (
             <List.Item>
               <Badge

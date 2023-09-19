@@ -33,6 +33,7 @@ const Celebration = () => {
         <List
           itemLayout="horizontal"
           dataSource={filteredData}
+          style={{ overflow: "auto", height: 300 }}
           // style={{backgroundColor:"#e6f2ff"}}
           renderItem={(item) => (
             <List.Item style={{ padding: "2px" }}>
