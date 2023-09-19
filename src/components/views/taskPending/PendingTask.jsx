@@ -99,15 +99,14 @@ const PendingTask = ({ showModal, isModalOpen, handleOk, handleCancel }) => {
               columns={columns}
               dataSource={dataSource}
               pagination={false}
+              style={{ overflow: "auto", height: "300px" }}
               rowKey={(record) => record.key}
             />
           ) : (
-            <Typography.Title
-              level={5}
-              style={{ textAlign: "center", color: "gray" }}
-            >
-              No pending tasks
-            </Typography.Title>
+            <Table
+              showHeader={false}
+              style={{ overflow: "auto", height: "300px" }}
+            />
           )}
         </Card>
       </Col>
