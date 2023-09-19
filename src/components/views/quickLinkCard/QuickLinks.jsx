@@ -61,6 +61,7 @@ const QuickLinks = () => {
         <List
           size="small"
           bordered={false}
+          style={{ overflow: "auto", height: "300px" }}
           dataSource={quickLinks}
           renderItem={(item) => (
             <List.Item
