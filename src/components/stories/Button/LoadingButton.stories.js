@@ -5,7 +5,6 @@ export default {
   component: Button,
   title: "Buttons/LoadingButton",
 };
-
 export const Loading = (args) => {
   const [loading, setLoading] = useState(false);
 
@@ -13,7 +12,7 @@ export const Loading = (args) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 20000);
   };
 
   return (
