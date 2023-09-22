@@ -22,12 +22,14 @@ LeftIcon.argTypes = {
       options: [<DeleteOutlined />, <SearchOutlined />],
     },
   },
-  iconPosition: {
-    control: {
-      type: 'radio',
-      options: ['left', 'right'],
+  parameters:{
+    iconPosition: {
+      control: {
+        type: 'radio',
+        options: ['left', 'right'],
+      },
     },
-  },
+  }
 };
 export const RightIcon = (args) => <IconButton {...args} />;
 
