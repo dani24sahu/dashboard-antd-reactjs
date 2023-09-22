@@ -105,7 +105,7 @@ const AppContent = () => {
             My Dashboard
           </Text>
           {/* <AntButton config={buttonConfig} buttonId={1} /> */}
-          {/* <Button
+          <Button
             type="primary"
             icon={<BellFilled />}
             children="Apply New"
@@ -114,8 +114,8 @@ const AppContent = () => {
             color="maroon"
             label="Apply New"
             onClick={() => alert("clicked")}
-          /> */}
-          <IconButton icon={<BellFilled/>} iconPosition="right" label="Apply New" />
+          />
+          {/* <IconButton icon={<BellFilled/>} iconPosition="right" label="Apply New" /> */}
         </div>
         <div className="container">
           <Space size={"large"} direction="horizontal">
