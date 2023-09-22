@@ -1,5 +1,6 @@
-import { BellFilled } from "@ant-design/icons";
+import { BellFilled, MailOutlined } from "@ant-design/icons";
 import Input from "./Input";
+import {emailSchema, passwordSchema} from './validationSchema'
 
 export default {
   title: "Inputs/Input",
@@ -42,4 +43,26 @@ PasswordInput.args = {
   placeholder: "Enter Password",
   type: "password",
   size: "large",
+};
+
+export const EmailInput = Template.bind({});
+EmailInput.args = {
+  placeholder: "Enter Email",
+  leftIcon: <MailOutlined />,
+  validationSchema: emailSchema,
+  size: "large",
+  parameters: {
+    controls: { expanded: true },
+  },
+};
+
+export const PasswordInputWithValidation = Template.bind({});
+PasswordInputWithValidation.args = {
+  placeholder: "Enter Password",
+  type: "password",
+  size: "large",
+  validationSchema: passwordSchema,
+  parameters: {
+    controls: { expanded: true },
+  },
 };
