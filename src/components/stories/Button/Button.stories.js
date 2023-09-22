@@ -15,6 +15,9 @@ export const Default = {
     shape: null,
     icon: null,
     onClick: () => alert("Clicked"),
+    parameters: {
+      controls: { expanded: true },
+    },
   },
 };
 
