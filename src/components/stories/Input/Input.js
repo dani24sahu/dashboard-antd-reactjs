@@ -1,11 +1,37 @@
-import { Input as AntInput } from "antd";
+import { Input as AntInput, AutoComplete as AntAutocomplete } from "antd";
 import {} from "@ant-design/icons";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { urlSchema } from "./validationSchema";
 
-const Input = ({ placeholder, leftIcon, rightIcon, size, type,  }) => {
+const Input = ({
+  placeholder,
+  leftIcon,
+  rightIcon,
+  size,
+  type,
+  validationSchema,
+  options,
+  onSelect,
+  required=true
+}) => {
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState(null);
+  const [url, setUrl] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+
+  // const options = ['Apple', 'Banana', 'Cherry', 'Date',];
+
+  const handleSearch = (value) => {
+    setSearchValue(value);
+  };
+
+  const handleSelect = (value) => {
+    setSearchValue(value);
+    if (onSelect) {
+      onSelect(value);
+    }
+  };
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -32,12 +58,19 @@ const Input = ({ placeholder, leftIcon, rightIcon, size, type,  }) => {
       } else {
         setError(null);
       }
+
+      const { error: ValidationError } = urlSchema.validate(value);
+      if (ValidationError) {
+        setError(ValidationError.message);
+      } else {
+        setError("");
+      }
     }
   };
 
   return (
     <>
-      {leftIcon ? (
+      {/* {type === "iconInput" && leftIcon ? (
         <AntInput
           placeholder={placeholder}
           prefix={leftIcon}
@@ -51,16 +84,44 @@ const Input = ({ placeholder, leftIcon, rightIcon, size, type,  }) => {
           size={size}
           onChange={handleChange}
         />
-      )}
-
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      )} */}
 
       {type === "password" ? (
-        <AntInput.Password
+        <>
+          <AntInput.Password
+            placeholder={placeholder}
+            size={size}
+            value={inputValue}
+            onChange={handleChange}
+          />
+        </>
+      ) : null}
+
+      {type === "url" ? (
+        <>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+          <AntInput
+            placeholder="Enter URL"
+            // validationSchema={validationSchema}
+            size={size}
+            handleChange={handleChange}
+          />
+        </>
+      ) : null}
+
+      {type === "search" ? (
+        <AntAutocomplete
+          value={searchValue}
+          aria-required={required}
+          options={options
+            .filter((option) =>
+              option.toLowerCase().includes(searchValue.toLowerCase())
+            )
+            .map((option) => ({ value: option }))}
+          style={{ width: 450 }}
+          onSearch={handleSearch}
+          onSelect={handleSelect}
           placeholder={placeholder}
-          size={size}
-          value={inputValue}
-          onChange={handleChange}
         />
       ) : null}
     </>
@@ -81,6 +142,9 @@ Input.propTypes = {
     "url",
     "search",
   ]),
+  validationSchema: PropTypes.object,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onSelect: PropTypes.func,
 };
 
 export default Input;
