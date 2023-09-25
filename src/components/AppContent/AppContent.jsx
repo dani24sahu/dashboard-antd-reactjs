@@ -1,4 +1,4 @@
-import { Card, Col, Row, Space, Typography } from "antd";
+import { Card, Col, Dropdown, Menu, Row, Space, Typography } from "antd";
 
 import React, { useState } from "react";
 import PendingTask from "../views/taskPending/PendingTask.jsx";
@@ -26,6 +26,9 @@ import Button from "../stories/Button/Button.js";
 import { BellFilled } from "@ant-design/icons";
 import IconButton from "../stories/Button/IconButton.js";
 import { LeftIcon } from "../stories/Button/IconButton.stories.js";
+import ButtonGroup from "antd/es/button/button-group.js";
+import DropdownButton from "../stories/Button/DropdownButton.js";
+import LeaveFormModal from "../views/leaveFormModal/leaveFormModal.jsx";
 
 const data = ["Item 1", "Item 2", "Item 3", "Item 4"];
 const { Text } = Typography;
@@ -87,6 +90,8 @@ const items = [
 
 const AppContent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -97,6 +102,47 @@ const AppContent = () => {
     setIsModalOpen(false);
   };
 
+  const handleApplyNew = (selectedOption) => {
+    console.log("Selected option:", selectedOption);
+    setSelectedOption(selectedOption)
+    setIsModalVisible(true);
+  };
+
+  const handleModalCancel = () => {
+    setIsModalVisible(false);
+  }
+
+  const menuItems = [
+    {
+      key: "1",
+      label: "Leave"
+    },
+    {
+      key: "2",
+      label: "Regularization"
+    },
+    {
+      key: "3",
+      label: "Work From Home"
+    },
+    {
+      key: "4",
+      label: "On Duty"
+    },
+    {
+      key: "5",
+      label: "Expanse"
+    },
+    {
+      key: "6",
+      label: "Restricted Holiday",
+    },
+    {
+      key: "7",
+      label: "Short Leave"
+    },
+  ];
+
   return (
     <>
       <div className="AppContent">
@@ -104,19 +150,18 @@ const AppContent = () => {
           <Text style={{ color: "maroon", fontSize: 25 }} strong>
             My Dashboard
           </Text>
-          {/* <AntButton config={buttonConfig} buttonId={1} /> */}
-          <Button
-            type="primary"
-            icon={<BellFilled />}
-            children="Apply New"
-            shape="round"
-            size="large"
-            color="maroon"
+          <DropdownButton
             label="Apply New"
-            onClick={() => alert("clicked")}
+            type="primary"
+            color="maroon"
+            size="large"
+            options={menuItems}
+            onClick={handleApplyNew}
           />
-          {/* <IconButton icon={<BellFilled/>} iconPosition="right" label="Apply New" /> */}
         </div>
+        {selectedOption === "Leave" && (
+          <LeaveFormModal open={isModalVisible} onCancel={handleModalCancel} />
+        )}
         <div className="container">
           <Space size={"large"} direction="horizontal">
             <Card>
