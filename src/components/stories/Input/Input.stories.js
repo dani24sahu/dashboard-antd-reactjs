@@ -1,6 +1,6 @@
 import { BellFilled, MailOutlined } from "@ant-design/icons";
 import Input from "./Input";
-import {emailSchema, passwordSchema} from './validationSchema'
+import { emailSchema, passwordSchema, urlSchema } from "./validationSchema";
 
 export default {
   title: "Inputs/Input",
@@ -64,5 +64,28 @@ PasswordInputWithValidation.args = {
   validationSchema: passwordSchema,
   parameters: {
     controls: { expanded: true },
+  },
+};
+
+export const UrlInput = Template.bind({});
+UrlInput.args = {
+  placeholder: "Enter URL",
+  type: "url",
+  validationSchema: urlSchema, // Use the URL validation schema
+  size: "large",
+};
+
+const options = ["Apple", "Banana", "Cherry", "Date"];
+export const AutoCompleteInput = Template.bind({});
+AutoCompleteInput.args = {
+  options,
+  type: "search",
+  required: true,
+  placeholder: "Type to search",
+  leftIcon: null,
+  rightIcon: null,
+  size: "large",
+  onSelect: (value) => {
+    console.log(`Selected: ${value}`);
   },
 };
