@@ -13,6 +13,12 @@ Default.args = {
   type: "primary",
   label: "Click me",
   color: "blue",
-  size: "large",
+  shape: "round",
+  size: {
+    options: ["small", "middle", "large"],
+  },
+  onClick: (label) => console.log(label),
   options: ["Option 1", "Option 2", "Option 3"],
+  loading: false,
+  disabled: false,
 };
